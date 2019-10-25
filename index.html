@@ -9,17 +9,32 @@
 </head>
 <body>
     
-  <section id="start-quiz" role="start">
-    <main>
-      <header role = "banner">Matrix Quiz</header>
-      <button id="Start" class="start-button" type="button"> Enter the Matrix Quiz</button>
+    
+    <main role="main" class="container">
+      <header role = "banner" class="header">
+        <section> 
+        </section>
+        <section> 
+          <ul>
+            <li>Question: <span class = "questionNumber">0</span>/10 </li>
+            <li>Score: <span class="score">0</span></li>
+          </ul>
+        </section>
+      </header>
+      <section role="region" class="biggerSquare">
+        <h1>Matrix Quiz</h1>
+        <img src="quiz-pics/matrix-code.jpg" alt="Matrix Code" class="images">
+        <button id="Start" class="start-button" type="button"> Enter the Matrix Quiz</button>
+      </section>
     </main>
-  </section>
+
+ 
 
   <section class = "quiz-questions" role = "questions">
     <h2 class="questionTitle"></h2>
       <div class ="choices"></div>
-      <div class ="questionNumber"
+      <div class ="questionNumber"></div>
+      <button id="nextQuestion"> Next Question</button>
   </section>
   
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
