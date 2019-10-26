@@ -19,7 +19,11 @@ h1,header {
     height:100px;
 }
 
-.header li {
+body ul {
+    text-align: center;
+}
+body li {
+    color: greenyellow;
     display: inline-block;
     list-style: none;
 }
