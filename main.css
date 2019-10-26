@@ -3,7 +3,9 @@
 *{
     box-sizing: border-box;
 }
-
+main {
+    background-size: cover;
+}
 body {
     background-color:black;
     min-width: 320;
