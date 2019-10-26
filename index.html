@@ -8,22 +8,30 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-  <h1>Matrix Quiz</h1> <!--i moved this line down to img from other spots to here, i also added the index in the js file and modded some of your CSS-->
-    <section> 
-      <ul>
-        <li>Question: <span class = "questionNumber">0</span>/5 </li>
-        <li>Score: <span class="score">0</span></li>
-      </ul>
-    </section>
-    <img src="quiz-pics/matrix-code.jpg" alt="Matrix Code" class="images"> <!-- to here-->
+    
+   
    
     <main role="main" class="container"> 
       <header role = "banner" class="header">
         <section> 
         </section>
+
+        <section> 
+            <ul>
+              <li>Question: <span class = "questionNumber">0</span>/5 </li>
+              <li>Score: <span class="score">0</span></li>
+            </ul>
+          </section>
       </header>
       <section role="region" class="biggerSquare">
-        <button id="Start" class="start-button" type="button"> Enter the Matrix Quiz</button>
+        <section class="startQuiz box">
+          <h1>Matrix Quiz</h1>
+          <img src="quiz-pics/enter-the-matrix.jpg" alt="Matrix Code" class="images">
+          <button type="button" class="startButton"> Enter the Matrix Quiz</button>
+        </section>
+        <section class="questionBox altBox"></section>
+        <section class="responseBox altBox"></section>
+        <section class="finalBox altBox"></section>
       </section>
     </main>
 

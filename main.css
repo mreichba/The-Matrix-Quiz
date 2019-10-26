@@ -2,10 +2,11 @@
 
 *{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-radius: 1%;
 }
-main {
-    background-size: cover;
-}
+
 body {
     background-color:black;
     min-width: 320;
@@ -19,6 +20,37 @@ h1,header {
     height:100px;
 }
 
+.biggerSquare {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3em;
+    background: url(quiz-pics/matrix-live-code.gif) fixed;
+    border: 0.1em yellowgreen solid;
+}
+
+.startQuiz,
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin: auto;
+    padding: 1em;
+    border: 0.1em yellowgreen solid;
+    background-color: black;
+}
+ 
+.images{
+    margin-bottom: 0.5em;
+    width: 90%;
+    max-width: 240px;
+}
+
 body ul {
     text-align: center;
 }
@@ -26,4 +58,21 @@ body li {
     color: greenyellow;
     display: inline-block;
     list-style: none;
+}
+
+.button {
+    margin-left: auto;
+    margin-right: auto;
+    height: 3em;
+    cursor: pointer;
+    text-transform: uppercase;
+    border: yellowgreen;
+    background-color: black;
+    color: yellowgreen;
+}
+
+.button:hover, .button:active{
+    background-color: yellowgreen;
+    color: black;
+    border: 0.1em yellowgreen;
 }
