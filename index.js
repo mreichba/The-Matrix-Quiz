@@ -1,4 +1,9 @@
 'use strict';
+$(document).ready(function(){
+  
+
+});
+
 const STORE = [
   {//Q1
     Questions: 'What is Keanu Reaves cyber alter-ego in The Matrix movies?',
@@ -52,8 +57,10 @@ const STORE = [
   },
 ];
 
-$(document).ready(function(){
-  
+function renderQuestions() {
+    let question= store.questions[store.currentQuestionIndex];
+    $(".questions").text()
 
 
-});
+
+}

@@ -8,6 +8,7 @@
 }
 
 body {
+    font-family: 'Source Code Pro', monospace; 
     background-color:black;
     min-width: 320;
     max-width: 1600px;
@@ -18,6 +19,7 @@ h1,header {
     font-size: 50px;
     text-align: center;
     height:60px;
+    font-family: 'Source Code Pro', monospace;
 }
 
 .biggerSquare {
@@ -25,11 +27,12 @@ h1,header {
     flex-direction: column;
     align-items: center;
     margin-top: 3em;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: 450px;
+    margin-right: 450px; */
     margin-bottom: 3em;
     background: url(quiz-pics/matrix-live-code.gif) fixed;
     border: 0.1em yellowgreen solid;
+    padding: 50px;
 }
 
 .startQuiz,
@@ -43,15 +46,18 @@ h1,header {
     padding: 1em;
     border: 0.1em yellowgreen solid;
     background-color: black;
+    ;
 }
  
-.images{
+.images {
     margin-bottom: 0.5em;
-    width: 90%;
+    width: 100%;
     max-width: 240px;
 }
 
+
 ul {
+    font-family: 'Source Code Pro', monospace;
     text-align: center;
     padding-bottom: 10px;
 }
@@ -70,6 +76,8 @@ body li {
     border: yellowgreen;
     background-color: black;
     color: yellowgreen;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 20px;
 }
 
 .button:hover, .button:active{
@@ -77,3 +85,67 @@ body li {
     color: black;
     border: 0.1em yellowgreen;
 }
+
+/*phone screen*/
+@media screen and (min-width: 300px) {
+    body {
+        display:block;
+    }
+
+    .container {
+        display:block;
+
+    }
+    .header{
+        display:block;
+
+    }
+    .biggerSquare {
+        display: flex;
+        margin-top: 0;
+        margin-bottom: 3em;
+        border: 0.1em yellowgreen solid;
+        padding: 50px;
+    }
+    
+    
+/*tablet screen*/
+@media screen and (min-width: 400px) {
+    body {
+        display:block;
+    }
+
+    .container {
+        display:block;
+
+    }
+    .header{
+        display:block;
+
+    }
+    .biggerSquare {
+        display:flex;
+        padding: 50px;
+        margin: 0 auto 0;    
+    }
+    
+
+/*desktop screen*/
+@media screen and (min-width: 900px) {
+    body {
+        display:flex;
+    }
+
+    .container {
+        display:flex;
+
+    }
+    .header{
+        display:flex;
+
+    }
+    .biggerSquare {
+        display:flex;
+        
+    }
+    
