@@ -1,66 +1,232 @@
 'use strict';
-$(document).ready(function(){
-  
 
-});
-
+//stores our questions, options, and answers as objects
 const STORE = [
   {//Q1
-    Questions: 'What is Keanu Reaves cyber alter-ego in The Matrix movies?',
-    Options: [
+    question: 'What is Keanu Reaves cyber alter-ego in The Matrix movies?',
+    answers: [
       'Trinity',
       'Neo',
       'Mr. Anderson',
       'Morpheus'
     ],
-    Answers: 'Neo'
+    rightAnswer: 'Neo'
   },
   {//Q2
-    Questions: 'Which colored pill does Neo take to go "down the rabbit hole"?',
-    Options: [
+    question: 'Which colored pill does Neo take to go "down the rabbit hole"?',
+    answers: [
       'Blue',
       'Red',
       'Yellow',
       'Green'
     ],
-    Answers: 'Red'   
+    rightAnswer: 'Red'   
   },
   {//Q3
-    Questions: 'Who rescues Neo from the Matrix in the first movie?',
-    Options: [
+    question: 'Who rescues Neo from the Matrix in the first movie?',
+    answers: [
       'Cypher',
       'Trinity',
       'Morpheus',
       'Mr. Anderson'
     ],
-    Answers: 'Morpheus'
+    rightAnswer: 'Morpheus'
   },
   {//Q4
-    Questions: 'Where does the last of the natural born human population on earth live?',
-    Options: [
+    question: 'Where does the last of the natural born human population on earth live?',
+    answers: [
       'Babylon',
       'Zion',
       'Crete',
       'L.A.'
     ],
-    Answers: 'Zion'
+    rightAnswer: 'Zion'
   },
   {//Q5
-    Questions: 'Who is "The One"?',
-    Options:[
+    question: 'Who is "The One"?',
+    answers:[
       'Trinity',
       'Morpheus',
       'The Oracle',
       'Neo'
     ],
-    Answers: 'Neo'
+    rightAnswer: 'Neo'
   },
 ];
 
-function renderQuestions() {
-    let question= store.questions[store.currentQuestionIndex];
-    $(".questions").text()
+//sets the score and question number to 0
+let score = 0;
+let questionNumber = 0;
 
-
-
+//Render question
+function renderQuestion() {
+  if (questionNumber < STORE.length) {
+    return createQuestion(questionNumber);
+  } else {
+    $('.questionBox').hide(); 
+    finalFeedBack();
+    $('.questionNumber').text(5);
+  }
 }
+
+//updates score by 1
+function updateScore() {
+  score++;
+  $('.score').text(score);
+}
+//ability to restart score
+
+//updates question number by 1
+function updateQuestionNumber() {
+  questionNumber++;
+  $('.questionNumber').text(questionNumber + 1);
+}
+
+//resets question and answer counter
+function resetStats() {
+  score = 0;
+  questionNumber = 0;
+  $('.score').text(0);
+  $('.questionNumber').text(0);
+}
+
+//begins the quiz
+function startQuiz() {
+  $('.altBox').hide();
+  $('.record').hide();
+  $('.startQuiz').on('click', '.startButton', function (event) {
+    $('.startQuiz').hide();
+    $('.record').show();
+    $('.questionNumber').text(1);
+    $('.questionBox').show();
+    $('.questionBox').prepend(renderQuestion());
+  });
+}
+
+
+//Submit answer
+function submitAnswer() {
+  $('.biggerSquare').on('submit', function (event) {
+    event.preventDefault();
+    $('.altBox').hide();
+    $('.response').show();
+    let choice = $('input:checked');
+    let answer = choice.val();
+    let correct = STORE[questionNumber].rightAnswer;
+    if (answer === correct){
+      rightAnswer();
+    } else {
+      wrongAnswer();
+    }
+  });
+}
+
+
+//creates a form for each question
+function createQuestion(questionIndex) {
+  let formMaker = $(`<form>
+    <fieldset>
+      <legend class="questionText">${STORE[questionIndex].question}</legend>
+    </fieldset>
+  </form>`);
+
+  let fieldSelector = $(formMaker).find('fieldset');
+
+  STORE[questionIndex].answers.forEach(function (answerValue, answerIndex) {
+    $(`<label class="sizeMe" for="${answerIndex}">
+        <input class="radio" type="radio" id="${answerIndex}" value="${answerValue}" name="answer" required>
+        <span>${answerValue}</span>
+      </label>
+      `).appendTo(fieldSelector);
+  });
+  $(`<button type= 'submit' class= 'submitButton button'>Submit</button>`).appendTo(fieldSelector);
+  return formMaker;
+}
+
+//feedback for if the answer selected is the right answer
+function rightAnswer () {
+  $('.response').html(
+    `<h3> You answered correctly! </h3> <img src="quiz-pics/right-answer.jpeg" alt= "Neo waving" width="200px">
+    <button type = "button" class= "nextButton button"> Next Question</button>`
+
+  );
+  updateScore();
+}
+
+
+//feedback for if the answer selected is the wrong answer
+function wrongAnswer() { 
+  $('.response').html(
+    `<h3> You answered incorrectly! </h3> <img src="quiz-pics/wrong-answer.jpg" alt= "upset Enemies" width="200px">
+  <p class="sizeMe">It's actually:</p>
+  <p class="sizeMe">${STORE[questionNumber].rightAnswer}</p>
+  <button type = "button" class= "nextButton button"> Next Question</button>`
+  );
+}
+
+
+//generates the next question
+function nextQuestion() {
+  $('.biggerSquare').on('click', '.nextButton', function (event) {
+    $('.altBox').hide();
+    $('.questionBox').show();
+    updateQuestionNumber();
+    $('.questionBox form').replaceWith(renderQuestion());
+  });
+}
+
+
+//feedback on final score of the quiz
+function finalFeedBack() {
+  $('.final').show();
+  let array; 
+  const awesome = [
+    'You did awesome!',
+    'quiz-pics/awesome-feedback-matrix.jpg',
+    'close-up of Neo',
+    'You are one with the Matrix!'
+  ];
+  const bad = [
+    'You didnt do too well!',
+    'quiz-pics/bad-feedback-matrix.jpg',
+    'System Failure sign',
+    'You need to brush up on your Matrix knowledge to be chosen.'
+  ];
+
+  if (score >= 4) {
+    array = awesome;
+  } 
+  else if(score < 5 && score >= 3){
+    array = awesome;
+  }else{
+    array = bad;
+  }
+  return $('.final').html(
+    `<h3> ${array[0]}</h3>
+    <img src="${array[1]}" alt=${array[2]}" class= "images">
+    <p class="sizeMe">${array[3]}</p>
+    <h3> Your score is ${score} / 5 </h3>
+    <button type="submit" class="restartButton button">Enter The Matrix again</button>`
+  );
+}
+
+
+function restartQuiz() {
+  $('.biggerSquare').on('click', '.restartButton button', function (event) {
+    event.preventDefault();     
+    resetStats();
+    $('.altBox').hide();
+    $('.startQuiz').show();   
+  });
+}
+
+//runs the functions
+function makeQuiz() {
+  startQuiz();
+  renderQuestion();
+  submitAnswer();
+  nextQuestion();
+  restartQuiz(resetStats);
+}
+
+$(makeQuiz);

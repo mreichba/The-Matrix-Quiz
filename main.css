@@ -33,7 +33,6 @@ h1, header {
     border: 0.1em yellowgreen solid;
     padding: 20px;
     margin: 0 20% 0; 
-
 }
 
 .box {
@@ -46,6 +45,14 @@ h1, header {
     padding: 1em;
     border: 0.1em yellowgreen solid;
     background-color: black;
+    color: yellowgreen;
+}
+
+fieldset{
+   background-color: black;
+   color: yellowgreen; 
+   display: flex;
+   border: 0
 }
  
 .images {
@@ -53,9 +60,7 @@ h1, header {
     width: 100%;
     height: auto;
     max-width: 400px;
-
 }
-
 
 body ul {
     font-family: 'Source Code Pro', monospace;
@@ -69,17 +74,26 @@ body li {
     display: inline-block;
     list-style: none;
 }
-
+.response{
+    display: flex;
+    color: yellowgreen;
+}
 .button {
-    height: 2.3em;
+    height: 2.1em;
     cursor: pointer;
     text-transform: uppercase;
     border: 0.5px solid yellowgreen;
     background-color: black;
     color: yellowgreen;
     font-family: 'Source Code Pro', monospace;
-    font-size: 3vw;
+    font-size: 2.5vw;
+    max-height: 30px;
     padding: 0 5px 0;
+}
+
+.submitButton {
+    
+    
 }
 
 .button:hover, .button:active{

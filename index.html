@@ -8,42 +8,26 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    
-   
-   
-    <main role="main" class="container"> 
-      <header role = "banner" class="header">
-        <section> 
-          <h1>Matrix Quiz</h1>
-      </header>
-      <section role="region" class="biggerSquare">
-        <section class="startQuiz box">
-          <section> 
-            <!-- THIS BELOW WILL BE PART OF EVERY SCREEN EXCEPT THE FIRST -->
-            <!-- <ul class = "record">
-              <li>Question: <span class = "questionNumber">0</span>/5 </li>
-              <li>Score: <span class="score">0</span></li>
-            </ul> -->
-          </section>
-          <img src="quiz-pics/enter-the-matrix.jpg" alt="Matrix Code" class="images">
-          <button type="button" class="start button"> Enter the Matrix Quiz</button>
-        </section>
-        <section class="questionBox altBox"></section>
-        <section class="responseBox altBox"></section>
-        <section class="finalBox altBox"></section>
+  <main role="main" class="container"> 
+    <header role = "banner" class="header">
+      <section> 
+        <h1>Matrix Quiz</h1>
+    </header>
+    <section role="region" class="biggerSquare">
+      <section class="startQuiz box">
+        <img src="quiz-pics/enter-the-matrix.jpg" alt="Matrix Code" class="images">
+        <button type="button" class="startButton button"> Enter the Matrix Quiz</button>
       </section>
-    </main>
-
+      <section class="questionBox box altBox"></section>
     
-    <!-- THIS BELOW WILL BE PART OF PAGE AFTER ANSWER IS SELECTED -->
-
-  <!-- <section class = "quiz-questions" role = "questions">
-    <h2 class="questionTitle"></h2>
-      <div class ="choices"></div>
-      <div class ="questionNumber"></div>
-      <button class= "next button" id="nextQuestion"> Next Question</button>
-  </section> -->
-  
+      <section class="response box altBox"></section>
+      <section class="final box altBox"></section>
+    </section>
+      <ul class = "record">
+        <li>Question: <span class = "questionNumber">0</span>/5 </li>
+        <li>Score: <span class="score">0</span></li>
+      </ul>
+  </main>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="index.js"></script>   
 </body>
