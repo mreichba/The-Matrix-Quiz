@@ -11,14 +11,15 @@ body {
     font-family: 'Source Code Pro', monospace; 
     background-color:black;
     min-width: 320;
-    max-width: 1600px;
+    max-width: 2000px;
 }
 
-h1,header { 
+h1, header { 
     color: greenyellow;
-    font-size: 50px;
+    font-size: 5vw;
     text-align: center;
-    height:60px;
+    height:auto;
+    padding: 10px;
     font-family: 'Source Code Pro', monospace;
 }
 
@@ -27,39 +28,41 @@ h1,header {
     flex-direction: column;
     align-items: center;
     margin-top: 3em;
-    /* margin-left: 450px;
-    margin-right: 450px; */
     margin-bottom: 3em;
-    background: url(quiz-pics/matrix-live-code.gif) fixed;
+    background: url(quiz-pics/matrix-live-code.gif);
     border: 0.1em yellowgreen solid;
-    padding: 50px;
+    padding: 20px;
+    margin: 0 20% 0; 
+
 }
 
-.startQuiz,
 .box {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     text-align: center;
-    margin: auto;
+    margin: 20px;
     padding: 1em;
     border: 0.1em yellowgreen solid;
     background-color: black;
-    ;
 }
  
 .images {
     margin-bottom: 0.5em;
     width: 100%;
-    max-width: 240px;
+    height: auto;
+    max-width: 400px;
+
 }
 
 
-ul {
+body ul {
     font-family: 'Source Code Pro', monospace;
     text-align: center;
     padding-bottom: 10px;
+    font-display: flex;
+    font-size: 3vw;
 }
 body li {
     color: greenyellow;
@@ -68,16 +71,15 @@ body li {
 }
 
 .button {
-    margin-left: auto;
-    margin-right: auto;
-    height: 3em;
+    height: 2.3em;
     cursor: pointer;
     text-transform: uppercase;
-    border: yellowgreen;
+    border: 0.5px solid yellowgreen;
     background-color: black;
     color: yellowgreen;
     font-family: 'Source Code Pro', monospace;
-    font-size: 20px;
+    font-size: 3vw;
+    padding: 0 5px 0;
 }
 
 .button:hover, .button:active{
@@ -93,7 +95,7 @@ body li {
     }
 
     .container {
-        display:block;
+        display:flexbox;
 
     }
     .header{
@@ -102,10 +104,8 @@ body li {
     }
     .biggerSquare {
         display: flex;
-        margin-top: 0;
-        margin-bottom: 3em;
-        border: 0.1em yellowgreen solid;
-        padding: 50px;
+
+        
     }
     
     
@@ -125,23 +125,22 @@ body li {
     }
     .biggerSquare {
         display:flex;
-        padding: 50px;
-        margin: 0 auto 0;    
+       
     }
     
 
 /*desktop screen*/
 @media screen and (min-width: 900px) {
     body {
-        display:flex;
+        display:block;
     }
 
     .container {
-        display:flex;
+        display:block;
 
     }
     .header{
-        display:flex;
+        display:block;
 
     }
     .biggerSquare {
