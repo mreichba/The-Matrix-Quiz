@@ -10,7 +10,7 @@
 body {
     font-family: 'Source Code Pro', monospace; 
     background-color:black;
-    min-width: 320;
+    min-width: 320px;
     max-width: 2000px;
 }
 
@@ -42,7 +42,7 @@ h1, header {
     align-items: center;
     justify-content: space-between;
     text-align: center;
-    margin: 20px;
+    margin: 5px;
     padding: 1em;
     border: 0.1em yellowgreen solid;
     background-color: black;
@@ -88,14 +88,14 @@ body li {
     border: 0.1em yellowgreen;
 }
 
-/*phone screen*/
-@media screen and (min-width: 300px) {
+/* phone screen */
+@media screen and (min-width: 320px) {
     body {
         display:block;
     }
 
     .container {
-        display:flexbox;
+        display:block;
 
     }
     .header{
