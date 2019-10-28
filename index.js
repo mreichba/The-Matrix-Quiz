@@ -205,14 +205,14 @@ function finalFeedBack() {
     `<h3> ${array[0]}</h3>
     <img src="${array[1]}" alt=${array[2]}" class= "images">
     <p class="sizeMe">${array[3]}</p>
-    <h3> Your score is ${score} / 5 </h3>
+    <h3> You got ${score} / 5! </h3>
     <button type="submit" class="restartButton button">Enter The Matrix again</button>`
   );
 }
 
 
 function restartQuiz() {
-  $('.biggerSquare').on('click', '.restartButton button', function (event) {
+  $('.biggerSquare').on('click', '.button.restartButton.button', function (event) {
     event.preventDefault();     
     resetStats();
     $('.altBox').hide();
@@ -226,7 +226,7 @@ function makeQuiz() {
   renderQuestion();
   submitAnswer();
   nextQuestion();
-  restartQuiz(resetStats);
+  restartQuiz();
 }
 
 $(makeQuiz);

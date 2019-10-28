@@ -117,11 +117,9 @@ body li {
 
     }
     .biggerSquare {
-        display: flex;
-
-        
+        display: flex; 
     }
-    
+}  
     
 /*tablet screen*/
 @media screen and (min-width: 400px) {
@@ -139,10 +137,8 @@ body li {
     }
     .biggerSquare {
         display:flex;
-       
     }
-    
-
+}
 /*desktop screen*/
 @media screen and (min-width: 900px) {
     body {
@@ -151,7 +147,6 @@ body li {
 
     .container {
         display:block;
-
     }
     .header{
         display:block;
@@ -159,6 +154,5 @@ body li {
     }
     .biggerSquare {
         display:flex;
-        
     }
-    
+}
