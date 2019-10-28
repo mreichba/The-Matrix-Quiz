@@ -210,7 +210,7 @@ function finalFeedBack() {
   );
 }
 
-
+//restart quiz
 function restartQuiz() {
   $('.biggerSquare').on('click', '.button.restartButton.button', function (event) {
     event.preventDefault();     
