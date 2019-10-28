@@ -91,6 +91,10 @@ body li {
     padding: 0 5px 0;
 }
 
+.questionText, .radio {
+    text-align: left;
+}
+
 .submitButton {
     
     

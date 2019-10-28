@@ -183,7 +183,7 @@ function finalFeedBack() {
   const awesome = [
     'You did awesome!',
     'quiz-pics/awesome-feedback-matrix.jpg',
-    'close-up of Neo',
+      
     'You are one with the Matrix!'
   ];
   const bad = [
