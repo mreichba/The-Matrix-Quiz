@@ -62,9 +62,10 @@ let questionNumber = 0;
 function startQuiz () {
   homePage();
   $('.altBox').hide();
+  $('.counters').hide();
   $('.startQuiz').on('click', '.startButton', function (event) {
     $('.startQuiz').hide();
-    createCounter();
+    $('.counters').show();
     $('.questionNumber').text(1);
     $('.questionBox').show();
     $('.questionBox').prepend(renderQuestion());
@@ -184,13 +185,13 @@ function finalFeedBack () {
   const awesome = [
     'You did awesome!',
     'quiz-pics/awesome-feedback-matrix.jpg',
-    'close up shot of Neo',
+    'close-up-shot-of-Neo',
     'You are one with the Matrix!'
   ];
   const bad = [
     'You didnt do too well!',
     'quiz-pics/bad-feedback-matrix.jpg',
-    'System Failure sign',
+    'System-Failure-sign',
     'You need to brush up on your Matrix knowledge to be chosen.'
   ];
   score >= 4 ? array = awesome : array = bad;
@@ -217,12 +218,14 @@ function restartQuiz() {
     event.preventDefault();     
     resetStats();
     $('.altBox').hide();
+    $('.counters').hide();
     $('.startQuiz').show();   
   });
 }
 
 //runs the functions
 function makeQuiz () {
+  createCounter();
   startQuiz();
   renderQuestion();
   submitAnswer();
