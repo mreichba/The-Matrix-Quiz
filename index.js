@@ -72,15 +72,15 @@ function startQuiz () {
 }
 //Renders home page
 function homePage() {
-  let home = `<img src="quiz-pics/enter-the-matrix.jpg" alt="Matrix Code" class="images">
- <button type="button" class="startButton button"> Enter the Matrix Quiz</button>.appendTo('.startQuiz')`;
+  let home = `<img src="quiz-pics/enter-the-matrix.jpg" alt="Enter the Matrix logo" class="images">
+ <button type="button" class="startButton button">Enter the Matrix Quiz</button>.appendTo('.startQuiz')`;
   $(home).appendTo('.startQuiz');
 }
 
 //Renders question and score count
 function createCounter () {
   let showCounter = `
-  <ul aria-live = "question and score number" class = "record">
+  <ul aria-live = "polite" class = "record">
     <li>Question: <span class = "questionNumber">0</span>/5 </li>
     <li>Score: <span class="score">0</span></li>
   </ul>`;
@@ -106,7 +106,7 @@ function renderQuestion () {
 function createQuestion (questionIndex) {
   let formMaker = $(`<form>
     <fieldset>
-      <legend aria-live ="new question" class="questionText">${STORE[questionIndex].question}</legend>
+      <legend aria-live = "new question" class="questionText">${STORE[questionIndex].question}</legend>
     </fieldset>
   </form>`);
 
@@ -145,7 +145,7 @@ function updateScore () {
 //feedback for if the answer selected is the right answer
 function rightAnswer () {
   $('.response').html(
-    `<h3> You answered correctly! </h3> <img src="quiz-pics/right-answer.jpeg" alt= "Neo waving" width="200px">
+    `<h3 aria-live = "polite"> You answered correctly! </h3> <img src="quiz-pics/right-answer.jpeg" alt= "Neo Triumphant" width="200px">
     <button type = "button" class= "nextButton button"> Next Question</button>`
   );
   updateScore();
@@ -154,7 +154,7 @@ function rightAnswer () {
 //feedback for if the answer selected is the wrong answer
 function wrongAnswer () { 
   $('.response').html(
-    `<h3> You answered incorrectly! </h3> <img src="quiz-pics/wrong-answer.jpg" alt= "upset Enemies" width="200px">
+    `<h3 aria-live="polite"> You answered incorrectly! </h3> <img src="quiz-pics/wrong-answer.jpg" alt= "Upset Enemies" width="200px">
   <p class="sentence">It's actually:</p>
   <p class="sentence">${STORE[questionNumber].rightAnswer}</p>
   <button type = "button" class= "nextButton button"> Next Question</button>`
@@ -184,7 +184,7 @@ function finalFeedBack () {
   const awesome = [
     'You did awesome!',
     'quiz-pics/awesome-feedback-matrix.jpg',
-    'close-up of Neo',
+    'close up shot of Neo',
     'You are one with the Matrix!'
   ];
   const bad = [
@@ -195,7 +195,7 @@ function finalFeedBack () {
   ];
   score >= 4 ? array = awesome : array = bad;
   return $('.final').html(
-    `<h3 aria-live="polite"> ${array[0]}</h3>
+    `<h3 aria-live= "polite"> ${array[0]}</h3>
     <img src="${array[1]}" alt=${array[2]}" class= "finalImages">
     <p aria-live="polite" class="sentence">${array[3]}</p>
     <h3 aria-live="polite"> You got ${score} / 5! </h3>
