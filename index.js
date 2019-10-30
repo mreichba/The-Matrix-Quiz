@@ -72,18 +72,13 @@ function addMainContent() {
 function startQuiz () {
  
   $('.altBox, .counters').removeClass('showBlock').addClass('hide');
-  // $('.counters').removeClass('showBlock').addClass("hide");
   homePage();
 
   $('.startQuiz').on('click', '.startButton', function (event) {
     $('.startQuiz').removeClass('showBlock').addClass('hide');
-    // $('.final').removeClass('showBlock').addClass('hide');
     $('.questionBox, .counters').removeClass('hide').addClass('showBlock');
-    // $('.questionBox').removeClass('hide').addClass("showBlock");
     $('.questionNumber').text(1);
-    
     $('.questionBox').html(renderQuestion());
-   
   });
 }
 //Renders home page
@@ -104,11 +99,7 @@ function createCounter () {
 }
 
 //Render question
-function renderQuestion () {
-  // questionNumber <= STORE.length ? createQuestion(questionNumber) :  $('.questionBox').addClass("hide"); 
-  // finalFeedBack();   
-  // $('.questionNumber').text(5);
-  
+function renderQuestion () {  
   if (STORE.questionNumber < STORE.questions.length) {
     return createQuestion(STORE.questionNumber);
   } else {
@@ -119,8 +110,7 @@ function renderQuestion () {
 }
 
 //creates a form for each question
-function createQuestion (questionNumber) {
-
+function createQuestion () {
   let questionString = '';
   STORE.questions[STORE.questionNumber].answers.forEach(function (answerValue, answerIndex) {
     questionString += `
