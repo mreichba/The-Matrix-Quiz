@@ -110,12 +110,19 @@ body li {
     max-width: 230px;
     max-height: 260px;
 }
+/* .label.sentence {
+    display: flex;
+    text-align: justify;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.submitButton {
-    
-    
-}
+.radioGroup label{
+  display: inline-block;
+  text-align: center;
+  margin: 0 0.2em;
+} */
 
 .button:hover, .button:active{
     background-color: yellowgreen;
@@ -147,7 +154,7 @@ body li {
     }
     
     .biggerSquare {
-        display:flex;
+        display: flex;
     }
     .questionText, .sentence {
         margin: 0 0 10px;
