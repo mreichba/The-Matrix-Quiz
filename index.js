@@ -1,7 +1,9 @@
 'use strict';
 
-//STORE.questionss our questions, options, and answers as objects
+//STOREs our questions, options, and answers as objects
 const STORE = {
+  score: 0,
+  questionNumber: 0,
   questions: [
     {//Q1
       question: 'What is Keanu Reave\'s cyber alter-ego in The Matrix movies?',
@@ -52,33 +54,43 @@ const STORE = {
         'Neo'
       ],
       rightAnswer: 'Neo'
-   
-    }
-  ],
-  score: 0,
-  questionNumber: 0
+    }]
 };
 
 //sets the score and question number to 0
 
 
+function addMainContent() {
+  let mainContent = `<section aria-live = "polite" class="startQuiz box"></section>
+<section aria-live = "polite" class="questionBox box altBox"></section>
+<section aria-live = "polite" class="response box altBox"></section>
+<section aria-live = "polite" heading = "final page" class="final box altBox"></section>`;
+  $('main').html(mainContent);
+}
+
 //begins the quiz
 function startQuiz () {
+ 
+  $('.altBox, .counters').removeClass('showBlock').addClass('hide');
+  // $('.counters').removeClass('showBlock').addClass("hide");
   homePage();
-  $('.altBox').hide();
+
   $('.startQuiz').on('click', '.startButton', function (event) {
-    $('.startQuiz').hide();
-    $('.counters').show();
-    // $('.questionNumber').text(1);
-    // $('.questionBox').show();
-    // $('.questionBox').prepend(renderQuestion());
+    $('.startQuiz').removeClass('showBlock').addClass('hide');
+    // $('.final').removeClass('showBlock').addClass('hide');
+    $('.questionBox, .counters').removeClass('hide').addClass('showBlock');
+    // $('.questionBox').removeClass('hide').addClass("showBlock");
+    $('.questionNumber').text(1);
+    
+    $('.questionBox').html(renderQuestion());
+   
   });
 }
 //Renders home page
 function homePage() {
   let home = `<img src="quiz-pics/enter-the-matrix.jpg" alt="Enter the Matrix logo" class="images">
- <button type="button" class="startButton button">Enter the Matrix Quiz</button>.appendTo('.startQuiz')`;
-  $(home).appendTo('.startQuiz');
+ <button type="button" class="startButton button">Enter the Matrix Quiz</button>`;
+  $('.startQuiz').html(home);
 }
 
 //Renders question and score count
@@ -88,48 +100,54 @@ function createCounter () {
     <li>Question: <span class = "questionNumber">0</span>/5 </li>
     <li>Score: <span class="score">0</span></li>
   </ul>`;
-  $(showCounter).appendTo('.counters');
+  $('.counters').html(showCounter);
 }
 
 //Render question
-function renderQuestion () { 
+function renderQuestion () {
+  // questionNumber <= STORE.length ? createQuestion(questionNumber) :  $('.questionBox').addClass("hide"); 
+  // finalFeedBack();   
+  // $('.questionNumber').text(5);
+  
   if (STORE.questionNumber < STORE.questions.length) {
-    $('.biggerSquare').html(createQuestion(STORE.questionNumber));
+    return createQuestion(STORE.questionNumber);
   } else {
-    // $('.questionBox').hide(); 
-    // finalFeedBack();
-    // $('.questionNumber').text(5);
+    $('.questionBox').addClass('hide'); 
+    finalFeedBack();
+    $('.questionNumber').text(5);
   }
 }
 
 //creates a form for each question
-function createQuestion(questionIndex) {
-  let questionHTML = `
-  <section aria-live = "polite" class="questionBox box altBox">
-  <form>
-    <fieldset>
-      <legend aria-live = "new question" class="questionText">${STORE.questions[questionIndex].question}</legend>`;
-  STORE.questions[questionIndex].answers.forEach(function (answerValue, answerIndex) {
-    questionHTML += `
-        <label class="sentence" for="${answerIndex}">
+function createQuestion (questionNumber) {
+
+  let questionString = '';
+  STORE.questions[STORE.questionNumber].answers.forEach(function (answerValue, answerIndex) {
+    questionString += `
+    <label class="sentence" for="${answerIndex}">
         <input class="radio" type="radio" id="${answerIndex}" value="${answerValue}" name="answer" required>
         <span>${answerValue}</span>
-      </label>`;
+    </label>`;
   });
-  questionHTML += `
+
+  let formMaker = `
+  <form action="#" id="quizForm">
+    <fieldset>
+      <legend aria-live = "new question" class="questionText">${STORE.questions[STORE.questionNumber].question}</legend>
+      ${questionString}
+      <button type= 'submit' class= 'submitButton button'>Submit</button>
     </fieldset>
-    <button type= \'submit\' class= \'submitButton button\'>Submit</button>
-    </form>
-  </section>`;
-  return questionHTML;
+  </form>`;
+
+  return formMaker;
 }
 
 //Submit answer
-function submitAnswer() {
-  $('.biggerSquare').on('submit', function (event) {
+function submitAnswer () {
+  $('body').on('submit', '#quizForm', function (event) {
     event.preventDefault();
-    $('.altBox').hide();
-    $('.response').show();
+    $('.questionBox').removeClass('showBlock').addClass('hide');
+    $('.response').addClass('showBlock');
     let choice = $('input:checked');
     let answer = choice.val();
     let correct = STORE.questions[STORE.questionNumber].rightAnswer;
@@ -138,13 +156,13 @@ function submitAnswer() {
 }
 
 //updates score by 1
-function updateScore() {
+function updateScore () {
   STORE.score++;
   $('.score').text(STORE.score);
 }
 
 //feedback for if the answer selected is the right answer
-function rightAnswer() {
+function rightAnswer () {
   $('.response').html(
     `<h3 aria-live = "polite"> You answered correctly! </h3> <img src="quiz-pics/right-answer.jpeg" alt= "Neo Triumphant" width="200px">
     <button type = "button" class= "nextButton button"> Next Question</button>`
@@ -153,7 +171,7 @@ function rightAnswer() {
 }
 
 //feedback for if the answer selected is the wrong answer
-function wrongAnswer() { 
+function wrongAnswer () { 
   $('.response').html(
     `<h3 aria-live="polite"> You answered incorrectly! </h3> <img src="quiz-pics/wrong-answer.jpg" alt= "Upset Enemies" width="200px">
   <p class="sentence">It's actually:</p>
@@ -163,24 +181,25 @@ function wrongAnswer() {
 }
 
 //generates the next question
-function nextQuestion() {
+function nextQuestion () {
   $('.biggerSquare').on('click', '.nextButton', function (event) {
-    $('.altBox').hide();
-    $('.questionBox').show();
+    $('.altBox').removeClass('showBlock').addClass('hide');
+    $('.questionBox').removeClass('hide').addClass('showBlock');
     updateQuestionNumber();
     $('.questionBox form').replaceWith(renderQuestion());
   });
 }
 
 //updates question number by 1
-function updateQuestionNumber() {
+function updateQuestionNumber () {
   STORE.questionNumber++;
   $('.questionNumber').text(STORE.questionNumber + 1);
 }
 
 //feedback on final score of the quiz
-function finalFeedBack() {
-  $('.final').show();
+function finalFeedBack () {
+  $('.questionBox').removeClass('showBlock').addClass('hide');
+  $('.final').removeClass('hide').addClass('showBlock');
   let array; 
   const awesome = [
     'You did awesome!',
@@ -205,7 +224,7 @@ function finalFeedBack() {
 }
 
 //resets question and answer counter
-function resetStats() {
+function resetStats () {
   STORE.score = 0;
   STORE.questionNumber = 0;
   $('.score').text(0);
@@ -215,19 +234,19 @@ function resetStats() {
 //restart quiz
 function restartQuiz() {
   $('.biggerSquare').on('click', '.restartButton', function (event) {
-    event.preventDefault();
+    event.preventDefault();     
     resetStats();
-    $('.altBox').hide();
-    $('.counters').hide();
-    $('.startQuiz').show();
+    $('.final, .counters').removeClass('showBlock').addClass('hide');
+    $('.startQuiz').removeClass('hide').addClass('showBlock');
   });
 }
 
 //runs the functions
-function makeQuiz() {
+function makeQuiz () {
+  addMainContent();
   createCounter();
   startQuiz();
-  // renderQuestion();
+  renderQuestion();
   submitAnswer();
   nextQuestion();
   restartQuiz();
