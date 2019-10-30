@@ -1,6 +1,7 @@
 'use strict';
 
-//STOREs our questions, options, and answers as objects
+/*Stores our questions, answers, and correct answers as objects and sets the score and question number to 0 */
+
 const STORE = {
   score: 0,
   questionNumber: 0,
@@ -57,9 +58,6 @@ const STORE = {
     }]
 };
 
-//sets the score and question number to 0
-
-
 function addMainContent() {
   let mainContent = `<section aria-live = "polite" class="startQuiz box"></section>
 <section aria-live = "polite" class="questionBox box altBox"></section>
@@ -68,12 +66,10 @@ function addMainContent() {
   $('main').html(mainContent);
 }
 
-//begins the quiz
-function startQuiz () {
- 
+//Begins the quiz
+function startQuiz() {
   $('.altBox, .counters').removeClass('showBlock').addClass('hide');
   homePage();
-
   $('.startQuiz').on('click', '.startButton', function (event) {
     $('.startQuiz').removeClass('showBlock').addClass('hide');
     $('.questionBox, .counters').removeClass('hide').addClass('showBlock');
@@ -89,7 +85,7 @@ function homePage() {
 }
 
 //Renders question and score count
-function createCounter () {
+function createCounter() {
   let showCounter = `
   <ul aria-live = "polite" class = "record">
     <li>Question: <span class = "questionNumber">0</span>/5 </li>
@@ -99,7 +95,7 @@ function createCounter () {
 }
 
 //Render question
-function renderQuestion () {  
+function renderQuestion() {  
   if (STORE.questionNumber < STORE.questions.length) {
     return createQuestion(STORE.questionNumber);
   } else {
@@ -109,8 +105,8 @@ function renderQuestion () {
   }
 }
 
-//creates a form for each question
-function createQuestion () {
+//Creates a form for each question
+function createQuestion() {
   let questionString = '';
   STORE.questions[STORE.questionNumber].answers.forEach(function (answerValue, answerIndex) {
     questionString += `
@@ -132,8 +128,8 @@ function createQuestion () {
   return formMaker;
 }
 
-//Submit answer
-function submitAnswer () {
+//Submits answer
+function submitAnswer() {
   $('body').on('submit', '#quizForm', function (event) {
     event.preventDefault();
     $('.questionBox').removeClass('showBlock').addClass('hide');
@@ -145,14 +141,14 @@ function submitAnswer () {
   });
 }
 
-//updates score by 1
-function updateScore () {
+//Updates score by 1
+function updateScore() {
   STORE.score++;
   $('.score').text(STORE.score);
 }
 
-//feedback for if the answer selected is the right answer
-function rightAnswer () {
+//Feedback for if the answer selected is the right answer
+function rightAnswer() {
   $('.response').html(
     `<h3 aria-live = "polite"> You answered correctly! </h3> <img src="quiz-pics/right-answer.jpeg" alt= "Neo Triumphant" width="200px">
     <button type = "button" class= "nextButton button"> Next Question</button>`
@@ -160,8 +156,8 @@ function rightAnswer () {
   updateScore();
 }
 
-//feedback for if the answer selected is the wrong answer
-function wrongAnswer () { 
+//Feedback for if the answer selected is the wrong answer
+function wrongAnswer() { 
   $('.response').html(
     `<h3 aria-live="polite"> You answered incorrectly! </h3> <img src="quiz-pics/wrong-answer.jpg" alt= "Upset Enemies" width="200px">
   <p class="sentence">It's actually:</p>
@@ -170,8 +166,8 @@ function wrongAnswer () {
   );
 }
 
-//generates the next question
-function nextQuestion () {
+//Generates the next question
+function nextQuestion() {
   $('.biggerSquare').on('click', '.nextButton', function (event) {
     $('.altBox').removeClass('showBlock').addClass('hide');
     $('.questionBox').removeClass('hide').addClass('showBlock');
@@ -180,14 +176,14 @@ function nextQuestion () {
   });
 }
 
-//updates question number by 1
-function updateQuestionNumber () {
+//Updates question number by 1
+function updateQuestionNumber() {
   STORE.questionNumber++;
   $('.questionNumber').text(STORE.questionNumber + 1);
 }
 
-//feedback on final score of the quiz
-function finalFeedBack () {
+//Feedback on final score of the quiz
+function finalFeedBack() {
   $('.questionBox').removeClass('showBlock').addClass('hide');
   $('.final').removeClass('hide').addClass('showBlock');
   let array; 
@@ -213,15 +209,15 @@ function finalFeedBack () {
   );
 }
 
-//resets question and answer counter
-function resetStats () {
+//Resets question and answer counter
+function resetStats() {
   STORE.score = 0;
   STORE.questionNumber = 0;
   $('.score').text(0);
   $('.questionNumber').text(0);
 }
 
-//restart quiz
+//Restart quiz
 function restartQuiz() {
   $('.biggerSquare').on('click', '.restartButton', function (event) {
     event.preventDefault();     
@@ -231,7 +227,7 @@ function restartQuiz() {
   });
 }
 
-//runs the functions
+//Runs the functions
 function makeQuiz () {
   addMainContent();
   createCounter();

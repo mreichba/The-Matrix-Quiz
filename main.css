@@ -99,6 +99,9 @@ body li {
 .sentence {
     text-align: left;
 }
+p.sentence{
+    text-align: center;
+}
 .final .sizeMe {
     text-align: center;
 }
@@ -125,6 +128,16 @@ body li {
 .showFlex {
     display: flex;
 }
+.startButton{
+    margin: 0 auto 0;
+}
+.nextButton{
+    margin: 0 auto 0;
+}
+.restartButton{
+    margin: 0 auto 0;
+}
+
 
 /* phone screen */
 @media screen and (min-width: 300px) {
