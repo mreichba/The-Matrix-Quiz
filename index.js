@@ -69,9 +69,9 @@ function startQuiz () {
   $('.startQuiz').on('click', '.startButton', function (event) {
     $('.startQuiz').hide();
     $('.counters').show();
-    $('.questionNumber').text(1);
-    $('.questionBox').show();
-    $('.questionBox').prepend(renderQuestion());
+    // $('.questionNumber').text(1);
+    // $('.questionBox').show();
+    // $('.questionBox').prepend(renderQuestion());
   });
 }
 //Renders home page
@@ -92,43 +92,40 @@ function createCounter () {
 }
 
 //Render question
-function renderQuestion () {
-  // questionNumber <= STORE.questions.length ? createQuestion(questionNumber) :  $('.questionBox').hide(); 
-  // finalFeedBack();   
-  // $('.questionNumber').text(5);
-  
+function renderQuestion () { 
   if (STORE.questionNumber < STORE.questions.length) {
-    return createQuestion(STORE.questionNumber);
+    $('.biggerSquare').html(createQuestion(STORE.questionNumber));
   } else {
-    $('.questionBox').hide(); 
-    finalFeedBack();
-    $('.questionNumber').text(5);
+    // $('.questionBox').hide(); 
+    // finalFeedBack();
+    // $('.questionNumber').text(5);
   }
 }
 
 //creates a form for each question
-function createQuestion (questionIndex) {
-  let formMaker = $(`<form>
+function createQuestion(questionIndex) {
+  let questionHTML = `
+  <section aria-live = "polite" class="questionBox box altBox">
+  <form>
     <fieldset>
-      <legend aria-live = "new question" class="questionText">${STORE.questions[questionIndex].question}</legend>
-    </fieldset>
-  </form>`);
-
-  let fieldSelector = $(formMaker).find('fieldset');
-
+      <legend aria-live = "new question" class="questionText">${STORE.questions[questionIndex].question}</legend>`;
   STORE.questions[questionIndex].answers.forEach(function (answerValue, answerIndex) {
-    $(`<label class="sentence" for="${answerIndex}">
+    questionHTML += `
+        <label class="sentence" for="${answerIndex}">
         <input class="radio" type="radio" id="${answerIndex}" value="${answerValue}" name="answer" required>
         <span>${answerValue}</span>
-      </label>
-      `).appendTo(fieldSelector);
+      </label>`;
   });
-  $('<button type= \'submit\' class= \'submitButton button\'>Submit</button>').appendTo(fieldSelector);
-  return formMaker;
+  questionHTML += `
+    </fieldset>
+    <button type= \'submit\' class= \'submitButton button\'>Submit</button>
+    </form>
+  </section>`;
+  return questionHTML;
 }
 
 //Submit answer
-function submitAnswer () {
+function submitAnswer() {
   $('.biggerSquare').on('submit', function (event) {
     event.preventDefault();
     $('.altBox').hide();
@@ -141,13 +138,13 @@ function submitAnswer () {
 }
 
 //updates score by 1
-function updateScore () {
+function updateScore() {
   STORE.score++;
   $('.score').text(STORE.score);
 }
 
 //feedback for if the answer selected is the right answer
-function rightAnswer () {
+function rightAnswer() {
   $('.response').html(
     `<h3 aria-live = "polite"> You answered correctly! </h3> <img src="quiz-pics/right-answer.jpeg" alt= "Neo Triumphant" width="200px">
     <button type = "button" class= "nextButton button"> Next Question</button>`
@@ -156,7 +153,7 @@ function rightAnswer () {
 }
 
 //feedback for if the answer selected is the wrong answer
-function wrongAnswer () { 
+function wrongAnswer() { 
   $('.response').html(
     `<h3 aria-live="polite"> You answered incorrectly! </h3> <img src="quiz-pics/wrong-answer.jpg" alt= "Upset Enemies" width="200px">
   <p class="sentence">It's actually:</p>
@@ -166,7 +163,7 @@ function wrongAnswer () {
 }
 
 //generates the next question
-function nextQuestion () {
+function nextQuestion() {
   $('.biggerSquare').on('click', '.nextButton', function (event) {
     $('.altBox').hide();
     $('.questionBox').show();
@@ -176,13 +173,13 @@ function nextQuestion () {
 }
 
 //updates question number by 1
-function updateQuestionNumber () {
+function updateQuestionNumber() {
   STORE.questionNumber++;
   $('.questionNumber').text(STORE.questionNumber + 1);
 }
 
 //feedback on final score of the quiz
-function finalFeedBack () {
+function finalFeedBack() {
   $('.final').show();
   let array; 
   const awesome = [
@@ -208,7 +205,7 @@ function finalFeedBack () {
 }
 
 //resets question and answer counter
-function resetStats () {
+function resetStats() {
   STORE.score = 0;
   STORE.questionNumber = 0;
   $('.score').text(0);
@@ -218,19 +215,19 @@ function resetStats () {
 //restart quiz
 function restartQuiz() {
   $('.biggerSquare').on('click', '.restartButton', function (event) {
-    event.preventDefault();     
+    event.preventDefault();
     resetStats();
     $('.altBox').hide();
     $('.counters').hide();
-    $('.startQuiz').show();   
+    $('.startQuiz').show();
   });
 }
 
 //runs the functions
-function makeQuiz () {
+function makeQuiz() {
   createCounter();
   startQuiz();
-  renderQuestion();
+  // renderQuestion();
   submitAnswer();
   nextQuestion();
   restartQuiz();
