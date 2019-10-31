@@ -119,10 +119,10 @@ function createQuestion() {
   let formMaker = `
   <form action="#" id="quizForm">
     <fieldset>
-      <legend aria-live = "new question" class="questionText">${STORE.questions[STORE.questionNumber].question}</legend>
+      <legend aria-live = "polite" class="questionText">${STORE.questions[STORE.questionNumber].question}</legend>
       ${questionString}
-      <button type= 'submit' class= 'submitButton button'>Submit</button>
     </fieldset>
+    <button type= 'submit' class= 'submitButton button'>Submit</button>
   </form>`;
 
   return formMaker;
@@ -150,7 +150,7 @@ function updateScore() {
 //Feedback for if the answer selected is the right answer
 function rightAnswer() {
   $('.response').html(
-    `<h3 aria-live = "polite"> You answered correctly! </h3> <img src="quiz-pics/right-answer.jpeg" alt= "Neo Triumphant" width="200px">
+    `<h2 aria-live = "polite"> You answered correctly! </h2> <img src="quiz-pics/right-answer.jpeg" alt= "Neo Triumphant" width="200px">
     <button type = "button" class= "nextButton button"> Next Question</button>`
   );
   updateScore();
@@ -159,7 +159,7 @@ function rightAnswer() {
 //Feedback for if the answer selected is the wrong answer
 function wrongAnswer() { 
   $('.response').html(
-    `<h3 aria-live="polite"> You answered incorrectly! </h3> <img src="quiz-pics/wrong-answer.jpg" alt= "Upset Enemies" width="200px">
+    `<h2 aria-live="polite"> You answered incorrectly! </h2> <img src="quiz-pics/wrong-answer.jpg" alt= "Upset Enemies" width="200px">
   <p class="sentence">It's actually:</p>
   <p class="sentence">${STORE.questions[STORE.questionNumber].rightAnswer}</p>
   <button type = "button" class= "nextButton button"> Next Question</button>`
@@ -201,10 +201,10 @@ function finalFeedBack() {
   ];
   STORE.score >= 4 ? array = awesome : array = bad;
   return $('.final').html(
-    `<h3 aria-live= "polite"> ${array[0]}</h3>
+    `<h2 aria-live= "polite"> ${array[0]}</h2>
     <img src="${array[1]}" alt=${array[2]}" class= "finalImages">
     <p aria-live="polite" class="sentence">${array[3]}</p>
-    <h3 aria-live="polite"> You got ${STORE.score} / 5! </h3>
+    <h2 aria-live="polite"> You got ${STORE.score} / 5! </h2>
     <button  type="submit" class="restartButton button">Enter The Matrix again</button>`
   );
 }
