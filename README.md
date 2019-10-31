@@ -1,1 +1,2 @@
-The Quiz about IDK
+Matrix Quiz App
+By: Mason Reichbauer and Angel Alicea
