@@ -54,7 +54,7 @@ fieldset{
    background-color: black;
    color: yellowgreen; 
    display: flex;
-   flex-direction: column;
+   /* flex-direction: column; */
    border: 0;
    padding: 0;
    margin: 0;
@@ -101,6 +101,7 @@ body li {
 
 .sentence {
     text-align: left;
+    display:block;
 }
 p.sentence{
     text-align: center;
