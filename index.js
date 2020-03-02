@@ -150,7 +150,7 @@ function updateScore() {
 //Feedback for if the answer selected is the right answer
 function rightAnswer() {
   $('.response').html(
-    `<h2 aria-live = "polite"> You answered correctly! </h2> <img src="quiz-pics/right-answer.jpg" alt= "Neo Triumphant" width="200px">
+    `<h2 aria-live = "polite"> You answered correctly! </h2> <img src="quiz-pics/right-answer2.jpg" alt= "Neo Triumphant" width="200px">
     <p class="sentence">You chose:</p>
     <p class="sentence">${STORE.questions[STORE.questionNumber].rightAnswer}</p>
     <button type = "button" class= "nextButton button"> Next Question</button>`
