@@ -150,7 +150,7 @@ function updateScore() {
 //Feedback for if the answer selected is the right answer
 function rightAnswer() {
   $('.response').html(
-    `<h2 aria-live = "polite"> You answered correctly! </h2> <img src="quiz-pics/right-answer.jpg" alt= "Neo Triumphant" width="200px" height="auto">
+    `<h2 aria-live = "polite"> You answered correctly! </h2> <img src="quiz-pics/right-answer.jpg" alt= "Neo Triumphant" width="200px">
     <button type = "button" class= "nextButton button"> Next Question</button>`
   );
   updateScore();
