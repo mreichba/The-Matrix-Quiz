@@ -151,6 +151,8 @@ function updateScore() {
 function rightAnswer() {
   $('.response').html(
     `<h2 aria-live = "polite"> You answered correctly! </h2> <img src="quiz-pics/right-answer.jpg" alt= "Neo Triumphant" width="200px">
+    <p class="sentence">You chose:</p>
+    <p class="sentence">${STORE.questions[STORE.questionNumber].rightAnswer}</p>
     <button type = "button" class= "nextButton button"> Next Question</button>`
   );
   updateScore();
