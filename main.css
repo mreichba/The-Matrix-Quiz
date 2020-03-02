@@ -104,7 +104,7 @@ body li {
 }
 
 .questionText .sentence {
-    display: flex;
+    display: block;
 }
 
 p.sentence{
