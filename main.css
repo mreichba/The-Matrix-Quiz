@@ -101,11 +101,12 @@ body li {
 
 .sentence {
     text-align: left;
-}
-
-.questionText .sentence {
     display: block;
 }
+
+/* .questionText .sentence {
+    display: block;
+} */
 
 p.sentence{
     text-align: center;
